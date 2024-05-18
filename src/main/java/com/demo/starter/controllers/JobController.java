@@ -2,6 +2,7 @@ package com.demo.starter.controllers;
 
 import java.util.List;
 
+import io.sentry.Sentry;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +33,14 @@ public class JobController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Job>> FindAllJobs() {
-        return new ResponseEntity<List<Job>>(jobService.FindAllJobs(), HttpStatus.OK);
+    public ResponseEntity<List<Job>> FindAllJobs() throws Exception {
+        try {
+            throw new Exception("Thos os am error");
+//            return new ResponseEntity<List<Job>>(jobService.FindAllJobs(), HttpStatus.OK);
+        } catch (Exception e) {
+            Sentry.captureException(e);
+        }
+        return null;
     }
 
     @GetMapping("/{id}")
