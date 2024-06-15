@@ -4,7 +4,7 @@ import java.util.List;
 
 import io.sentry.Sentry;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,13 +20,13 @@ import com.demo.starter.service.JobService;
 @RestController
 @RequestMapping("/jobs")
 public class JobController {
-    private JobService jobService;
+    private final JobService jobService;
 
     public JobController(JobService jobService){
         this.jobService = jobService;
     }
 
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> CreateJob(@RequestBody Job job){
         jobService.CreateJob(job);
         return new ResponseEntity<String>("Successfully created Job",HttpStatus.CREATED);
@@ -35,12 +35,14 @@ public class JobController {
     @GetMapping
     public ResponseEntity<List<Job>> FindAllJobs() throws Exception {
         try {
-            throw new Exception("Thos os am error");
-//            return new ResponseEntity<List<Job>>(jobService.FindAllJobs(), HttpStatus.OK);
+            System.out.println("desc");
+//            throw new Exception("This is am error");
+
+            return new ResponseEntity<List<Job>>(jobService.FindAllJobs(), HttpStatus.OK);
         } catch (Exception e) {
             Sentry.captureException(e);
+            throw e;
         }
-        return null;
     }
 
     @GetMapping("/{id}")
