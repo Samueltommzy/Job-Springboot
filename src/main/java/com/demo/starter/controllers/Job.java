@@ -63,34 +63,4 @@ public class Job {
     public void setMaximumSalary(String maximumSalary) {
         this.maximumSalary = maximumSalary;
     }
-    //    public Long GetId() {
-//        return id;
-//    }
-//    public String getTitle() {
-//        return title;
-//    }
-//    public String GetDescription() {
-//        return description;
-//    }
-//    public String GetMinimumSalary() {
-//        return minimumSalary;
-//    }
-//    public String GetMaximumSalary() {
-//        return maximumSalary;
-//    }
-//    public void SetId(Long id) {
-//        this.id = id;
-//    }
-//    public void SetDescription(String description) {
-//        this.description = description;
-//    }
-//    public void SetTitle(String title) {
-//        this.title = title;
-//    }
-//    public void SetMinimumSalary(String salary) {
-//        this.minimumSalary = salary;
-//    }
-//    public void SetMaximumSalary(String salary) {
-//        this.maximumSalary = salary;
-//    }
 }
